@@ -1,14 +1,36 @@
 function final_result(pscore, cscore) {
+  let playerScore = document.getElementById('player-score')
+  let compScore = document.getElementById('comp-score')
+  let computerChoice = document.getElementById('comp-chooses')
+  let result = document.getElementById('round-result')
   console.log("res")
   if (Number(pscore.innerText) == 10) {
       let finres = document.getElementById("final-result")
       finres.innerText = "You Win!!"
+
+      result.innerText =""
+      disableButtons()
   }
   if (Number(cscore.innerText) == 10) {
       let finres = document.getElementById("final-result")
       finres.innerText = "You Lose!!"
+
+      result.innerText =""
+      disableButtons()
   }
 }
+
+function disableButtons() {
+  let rock = document.getElementById("rock")
+  let paper = document.getElementById("paper")
+  let scissors = document.getElementById("scissors")
+
+  rock.disabled = true
+  paper.disabled = true
+  scissors.disabled = true
+
+}
+
 
 function showResult(score, playerChoice, computerChoice) {
   let result = document.getElementById('round-result')
@@ -67,16 +89,30 @@ function onClick(playerChoice, pscore, cscore) {
 
   const score = getResult(playerChoice.value, computerChoice, pscore, cscore)
   showResult(score, playerChoice.value, computerChoice)
+  if ((Number(pscore.innerText) == 10) || Number(cscore.innerText) == 10) {
+    final_result(pscore, cscore)
+}
+
 }
 
 function endGame() {
   let playerScore = document.getElementById('player-score')
   let compScore = document.getElementById('comp-score')
   let computerChoice = document.getElementById('comp-chooses')
-  let result = document.getElementById('final-result')
+  let rresult = document.getElementById('round-result')
+  let fresult = document.getElementById('final-result')
+  let rock = document.getElementById("rock")
+  let paper = document.getElementById("paper")
+  let scissors = document.getElementById("scissors")
+
+  scissors.disabled=false
+  rock.disabled=false
+  paper.disabled=false
+
   playerScore.innerText = 0
   compScore.innerText = 0
-  result.innerText = ''
+  rresult.innerText = ''
+  fresult.innerText = ''
 }
 
 
@@ -95,14 +131,10 @@ function playGame() {
   paper.onclick = () => onClick(paper, pScore, cScore)
   scissors.onclick = () => onClick(scissors, pScore, cScore)
 
-  if ((Number(pScore.innerText) == 10) || Number(cScore.innerText) == 10) {
-      final_result(cScore, pScore)
-  }
-
-  let quitButton = document.getElementById('restart')
-  quitButton.onclick = () => endGame()
+  let rButton = document.getElementById('restart')
+  rButton.onclick = () => endGame()
+  let quit = document.getElementById('quit')
+  quit.onclick = () => exit
 }
-
-
 
 playGame()
