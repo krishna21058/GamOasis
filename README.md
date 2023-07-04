@@ -1,2 +1,2 @@
-# Rock-Paper-Scissors
+# Mini-Games
 Rock-Paper-Scissors Game with computer
