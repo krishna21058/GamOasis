@@ -1,7 +1,6 @@
 const cells = document.querySelectorAll('.cell');
 let currentPlayer = 'O';
 let gameOver = false;
-let gameMode = 'computer';
 let res = document.getElementById("result");
 const winningCases = [
     [0, 1, 2],
@@ -18,43 +17,27 @@ let bg = document.getElementById("wrapper");
 let restart = document.getElementById('restart');
 let quit = document.getElementById('quit');
 
-
-
-function switchToComputerMode() {
-    gameMode = 'computer';
-    // restartGame();
-    window.location.href = "tic-tac-toe-index.game";
-}
-
-function switchToTwoPlayerMode() {
-    gameMode = 'two-player';
-    // restartGame();
-    window.location.href = "tic-tac-toe-index.game";
-
-}
-
 function restartGame() {
     currentPlayer = 'O';
     gameOver = false;
 
     cells.forEach(function (cell) {
         cell.textContent = '';
-        cell.style.color = ''; 
-        cell.classList.remove('strikethrough'); 
+        cell.style.color = '';
+        cell.classList.remove('strikethrough');
     });
 
     res.innerText = '';
     bg.style.background = "#636fab";
 }
+
 function quitGame() {
     restartGame();
     window.location.href = "tic-tac-toe-index.html";
 }
 
 
-cells.forEach(function (cell) { 
-    document.getElementById('onep').onclick = switchToComputerMode;
-    document.getElementById('twop').onclick = switchToTwoPlayerMode;
+cells.forEach(function (cell) {
     restart.onclick = () => restartGame();
     quit.onclick = () => quitGame();
     cell.onclick = handleCellClick;
@@ -97,45 +80,14 @@ function checkDraw() {
     return isBoardFull;
 }
 
-
-
-function computerMove() {
-    if (gameOver) return;
-
-    let emptyCells = Array.from(cells).filter(cell => cell.textContent === '');
-    if (emptyCells.length === 0) return;
-    const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-    randomCell.textContent = currentPlayer;
-    randomCell.style.color = currentPlayer === 'X' ? 'red' : 'blue';
-
-
-    bg.style.background = "#636fab";
-
-    if (checkWin(currentPlayer)) {
-        gameOver = true;
-        res.innerText = 'Player ' + currentPlayer + ' wins!';
-        bg.style.background = " #ab6563";
-
-        return;
-    }
-
-    if (checkDraw()) {
-        gameOver = true;
-        res.innerText = 'It\'s a draw!';
-        bg.style.background = "#9163ab";
-        return;
-    }
-    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-}
-
-
 function handleCellClick() {
 
     if (gameOver) return;
 
     if (this.textContent !== '') return;
 
-    bg.style.background = " #ab6563";
+    if(currentPlayer==='O')bg.style.background = " #ab6563";
+    else bg.style.background = " #636fab";
 
     this.textContent = currentPlayer;
     this.style.color = currentPlayer === 'X' ? 'red' : 'blue';
@@ -156,22 +108,4 @@ function handleCellClick() {
 
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
 
-    if(gameMode==='computer'){
-        setTimeout(() => { computerMove(); }, 1000);
-    }
-    else{
-
-    }
 }
-
-
-function switchToRPS() {
-    window.location.href = "tic-tac-toe-game.html";
-}
-
-function switchToTTT() {
-    window.location.href = "tic-tac-toe-index.html";
-}
-
-document.getElementById('ttt').onclick = switchToTTT;
-document.getElementById('rps').onclick = switchToRPS;
