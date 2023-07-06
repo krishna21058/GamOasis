@@ -42,6 +42,7 @@ body {
     align-items: center;
     font-size: 50px;
     border: 2px solid black;
+    border-radius: 5px;    
     cursor: pointer;
 }
 h1 {
@@ -55,4 +56,184 @@ h1 {
 
 .strikethrough {
     text-decoration: line-through;
+}
+
+
+
+.end-buttons{
+    display: flex;
+    width: 100px;
+    justify-content: space-between;
+    justify-content: center; 
+    align-items: center;
+    bottom: 50px;
+    gap: 25px;
+    position: absolute;
+}
+
+.end-buttons .end{
+    font-size: 25px;
+    font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+    color: black;
+    padding: 10px;
+    background-color: #778da9;
+    border:3px solid black;
+    font-weight: bold;
+    border-radius: 5px;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+#modes-wrapper {
+    background: #00244b;
+    color: white;
+    width: 100vw; /* Change to viewport units */
+    height: 100vh; /* Change to viewport units */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modes-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 600px; /* Adjust max-width for better responsiveness */
+    padding: 40px; /* Increase padding for more spacing */
+    text-align: center; 
+}
+
+.title {
+    margin-bottom: 40px; /* Add margin-bottom for spacing */
+    font-size: 45px;
+    text-align: center;
+}
+
+.modes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px; /* Add gap between columns */
+    margin-top: 20px; /* Add margin for spacing */
+}
+.mode-column {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.modes button {
+    background-color: #c3f3f4;
+    border: 5px solid #415a77;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px; 
+    cursor: pointer;
+    /* transition: background-color 0.3s ease;  */
+    width: 275px;
+}
+
+.modes img {
+    height: 130px;
+    width: auto;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 10px; 
+}
+
+.modes label {
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    display: block;
+    font-size: 20px;
+    margin-top: 5px; 
+}
+
+
+
+
+#games-wrapper {
+    background: #00244b;
+    color: white;
+    width: 100vw; /* Change to viewport units */
+    height: 100vh; /* Change to viewport units */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.games-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 600px; /* Adjust max-width for better responsiveness */
+    padding: 40px; /* Increase padding for more spacing */
+    text-align: center; 
+}
+
+.title {
+    margin-bottom: 40px; /* Add margin-bottom for spacing */
+    font-size: 45px;
+    text-align: center;
+}
+
+.games {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px; /* Add gap between columns */
+    margin-top: 20px; /* Add margin for spacing */
+}
+.game-column {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.games button {
+    background-color: #c3f3f4;
+    border: 5px solid #415a77;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px; 
+    cursor: pointer;
+    /* transition: background-color 0.3s ease;  */
+    width: 275px;
+}
+
+.games img {
+    height: 130px;
+    width: auto;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 10px; 
+}
+
+.games label {
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    display: block;
+    font-size: 20px;
+    margin-top: 5px; 
 }

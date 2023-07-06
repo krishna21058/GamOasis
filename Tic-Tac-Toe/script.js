@@ -1,6 +1,7 @@
 const cells = document.querySelectorAll('.cell');
 let currentPlayer = 'O';
 let gameOver = false;
+let gameMode = 'computer';
 let res = document.getElementById("result");
 const winningCases = [
     [0, 1, 2],
@@ -13,33 +14,74 @@ const winningCases = [
     [2, 4, 6]
 ];
 
-cells.forEach(function (cell) {
-    cell.addEventListener('click', handleCellClick);
+let bg = document.getElementById("wrapper");
+let restart = document.getElementById('restart');
+let quit = document.getElementById('quit');
+
+
+
+function switchToComputerMode() {
+    gameMode = 'computer';
+    // restartGame();
+    window.location.href = "tic-tac-toe-index.game";
+}
+
+function switchToTwoPlayerMode() {
+    gameMode = 'two-player';
+    // restartGame();
+    window.location.href = "tic-tac-toe-index.game";
+
+}
+
+function restartGame() {
+    currentPlayer = 'O';
+    gameOver = false;
+
+    cells.forEach(function (cell) {
+        cell.textContent = '';
+        cell.style.color = ''; 
+        cell.classList.remove('strikethrough'); 
+    });
+
+    res.innerText = '';
+    bg.style.background = "#636fab";
+}
+function quitGame() {
+    restartGame();
+    window.location.href = "tic-tac-toe-index.html";
+}
+
+
+cells.forEach(function (cell) { 
+    document.getElementById('onep').onclick = switchToComputerMode;
+    document.getElementById('twop').onclick = switchToTwoPlayerMode;
+    restart.onclick = () => restartGame();
+    quit.onclick = () => quitGame();
+    cell.onclick = handleCellClick;
 });
 
 function checkWin(player) {
-
     let winningCombination = null;
 
     for (let i = 0; i < winningCases.length; i++) {
-      const combo = winningCases[i];
-      let won = true;
-    
-      for (let j = 0; j < combo.length; j++) {
-        const index = combo[j];
-        if (cells[index].textContent !== player) {
-          won = false;
-          break;
+        const combo = winningCases[i];
+        let won = true;
+
+        for (let j = 0; j < combo.length; j++) {
+            const index = combo[j];
+            if (cells[index].textContent !== player) {
+                won = false;
+                break;
+            }
         }
-      }
-    
-      if (won) {
-        winningCombination = combo;
-        winningCombination.forEach(function (index) {
-            cells[index].classList.add("strikethrough");
-        });
-        break;
-      }
+
+        if (won) {
+            winningCombination = combo;
+            winningCombination.forEach(function (index) {
+                cells[index].classList.add("strikethrough");
+            });
+            break;
+        }
     }
     return winningCombination;
 }
@@ -56,6 +98,7 @@ function checkDraw() {
 }
 
 
+
 function computerMove() {
     if (gameOver) return;
 
@@ -64,7 +107,8 @@ function computerMove() {
     const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
     randomCell.textContent = currentPlayer;
     randomCell.style.color = currentPlayer === 'X' ? 'red' : 'blue';
-    let bg = document.getElementById("wrapper");
+
+
     bg.style.background = "#636fab";
 
     if (checkWin(currentPlayer)) {
@@ -78,20 +122,19 @@ function computerMove() {
     if (checkDraw()) {
         gameOver = true;
         res.innerText = 'It\'s a draw!';
-        bg.style.background = " #9163ab";
+        bg.style.background = "#9163ab";
         return;
     }
-
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
 }
 
 
 function handleCellClick() {
+
     if (gameOver) return;
 
     if (this.textContent !== '') return;
 
-    let bg = document.getElementById("wrapper");
     bg.style.background = " #ab6563";
 
     this.textContent = currentPlayer;
@@ -113,7 +156,22 @@ function handleCellClick() {
 
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
 
-    setTimeout(() => { computerMove(); }, 1000);
+    if(gameMode==='computer'){
+        setTimeout(() => { computerMove(); }, 1000);
+    }
+    else{
+
+    }
 }
 
-handleCellClick();
+
+function switchToRPS() {
+    window.location.href = "tic-tac-toe-game.html";
+}
+
+function switchToTTT() {
+    window.location.href = "tic-tac-toe-index.html";
+}
+
+document.getElementById('ttt').onclick = switchToTTT;
+document.getElementById('rps').onclick = switchToRPS;
