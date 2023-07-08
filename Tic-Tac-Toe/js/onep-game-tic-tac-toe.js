@@ -142,5 +142,5 @@ function handleCellClick() {
 
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
 
-    setTimeout(() => { computerMove(); }, 1000);
+    setTimeout(() => { computerMove(); }, 1500);
 }

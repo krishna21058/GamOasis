@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Code Breaker Game</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+  <div id="container">
+    <div id="game-container">
+      <h1>Code Breaker Game</h1>
+      <p>Guess the 4-digit code!</p>
+      <div class="game">
+        <input type="text" id="guess" placeholder="Enter your guess" maxlength="4">
+        <button onclick="checkGuess()">Guess</button>
+      </div>
+      <div id="highScore">Loading high scores...</div>
+      <div id="guessHistory">
+        <h2>Guess History</h2>
+        <ol class="guess-list"></ol>
+      </div>
+
+      <div id="remainingAttempts">Remaining Attempts: </div>
+      <p id="message"></p>
+      <button id="reset" onclick="resetGame()">Reset Game</button>
+    </div>
+    <div id="hints-container">
+
+      <div class="title">
+        <img id="hints" src="assets/hints.png" alt="Image description">
+        <h1>Hints and LifeLines</h1>
+      </div>
+
+      <ul id="hints-list">
+
+        <li>
+          <button onclick="provideHighLowHint()">
+            <img src="assets/higherlower.png" alt="Image description">
+            <h3>Higher/Lower</h3>
+          </button>
+          <h3 id="highlow" class="displayhint"></h3>
+          <h3 id="hlattempts">Checks left: 5</h3>
+        </li>
+        <li>
+          <button onclick="provideCheckDigitsHint()">
+            <img src="assets/check.png" alt="Image description">
+            <h3>Digit Correctness</h3>
+          </button>
+          <h6 id="checkdig" class="displayhint"></h6>
+          <h3 id="dattempts">Checks left: 4</h3>
+        </li>
+        <li>
+          <button onclick="provideDivisibilityHint()">
+            <img src="assets/divisible.png" alt="Image description">
+            <h3>Divisible by</h3>
+          </button>
+
+          <!-- <input type="number"> -->
+          <h3 id="checkdiv" class="displayhint"></h3>
+          <h3 id="divattempts">Checks left: 3</h3>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

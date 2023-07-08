@@ -1,0 +1,137 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  height: 100%;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgreen;
+  flex: 1;
+  height: 100%;
+  padding: 20px;
+}
+
+#guess {
+  padding: 5px;
+  width: 150px;
+}
+
+.guess-list {
+  list-style-type: decimal;
+  padding-left: 20px;
+}
+
+.guess-list li {
+  margin-bottom: 5px;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#message {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+
+
+
+
+
+#hints-container {
+  background-color: rgb(0, 67, 130);
+  padding: 20px;
+  height: 100%;
+}
+
+#hints-container .title {
+  color: white;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#hints-container .title img {
+  height: 75px;
+  width: auto;
+  display: inline-block;
+}
+
+#hints-list {
+  padding: 0;
+  margin-top: 80px;
+}
+
+#hints-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  margin-top: 10px;
+  gap: 25px;
+}
+
+#hints-list li img {
+  width: 50px;
+  height: 50px;
+}
+#hints-list li button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 200px;
+}
+
+#hints-list li button:hover {
+  background-color: #45a049;
+}
+
+
+#hints-list li h3 {
+  color: white;
+  margin: 0;
+  font-size: 17.5px;
+}
+
+
+#hints-list li .displayhint {
+  width: 100px;
+  color: white;
+  font-size: 17.5px;
+}
+
+#hints-list li .attempts {
+  margin-right: 10px;
+  width: 100px;
+  font-size: 17.5px;
+}
+
+#hints-list input  {
+  width: 55px;
+}
