@@ -6,6 +6,10 @@ body {
   font-family: 'Ubuntu', sans-serif;
 }
 
+body {
+  overflow: hidden;
+}
+
 #container {
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -19,9 +23,67 @@ body {
   background-color: rgb(96, 224, 96);
   height: 100%;
   padding: 40px;
-  padding-top: 50px;
+  padding-top: 0px;
+  justify-content: flex-start;
+  
 }
 
+#highScore {
+  top: 30px;
+  padding: 0;
+  position: relative;
+  background-color: #fbc344;
+  font-size: 20px;
+  border: 2.5px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  left: 250px;
+}
+
+#highScore h5 {
+  margin: 0;
+  padding: 5px 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fbc344;
+  border: 2px solid black;
+  min-width: 95px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 0;
+  text-align: center;
+  z-index: 1;
+}
+
+.dropdown-content.show {
+  text-align: center;
+  display: block;
+  padding: 5px 5px;
+}
+
+#highScoresList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#highScoresList li {
+  margin-bottom: 5px;
+}
+
+#highScoresList li span {
+  display: inline-block;
+  width: 60px;
+}
+
+
+
+#highScore h2 {
+  margin: 0;
+  padding: 0;
+}
 
 #game-container #gametitle {
   font-size: 50px;
@@ -35,11 +97,20 @@ body {
 }
 
 
+#game-container #remainingAttempts {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  width: 600px;
+ }
+
 
 .code-input {
-  margin-top: 30px;
+  margin-top: 15px;
   display: flex;
-  gap: 50px;
+  gap: 40px;
+  justify-content: center;
 }
 
 .code-input input {
@@ -57,7 +128,8 @@ body {
   justify-content: space-around;
   gap: 100px;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 30px;
+ 
 }
 
 .game .controlbtns button {
@@ -72,53 +144,56 @@ body {
   align-items: center;
   border: 2.5px solid black;
   border-radius: 10px;
+  font-weight: bold;
 }
 
 .guess-list {
-  list-style-type: decimal;
-  padding-left: 20px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  padding: 0px;
+  margin-top: 20px;
+  list-style-type: none;
+}
+
+#guessHistory h2 {
+  font-size: 20px;
 }
 
 .guess-list li {
-  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15px;
+  background-color: lightblue;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px;
 }
-
 
 button:hover {
   background-color: rgb(211, 211, 0);
 }
 
-#message {
-  margin-top: 20px;
-  font-weight: bold;
-}
 
-#game-container #reset{
+#game-container #reset {
   padding: 5px 10px;
   background-color: #fbc344;
   font-size: 20px;
   align-items: center;
   border: 2.5px solid black;
   border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-#game-container #highScore{
-  margin: 30px;
-  position: relative;
-  padding: 5px 10px;
-  background-color: #fbc344;
-  font-size: 20px;
-  border: 2.5px solid black;
-  border-radius: 10px;
-  right: 250px;
-}
 
 
 #hints-container {
   background-color: rgb(2, 73, 140);
   padding: 45px;
   height: 100%;
-
 }
 
 #hints-container .title {

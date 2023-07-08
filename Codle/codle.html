@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Code Breaker Game</title>
   <meta charset="utf-8">
@@ -10,11 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
 <body>
-
   <div id="container">
     <div id="game-container">
+      <div id="highScore">
+        <h5>High Scores</h5>
+        <div id="highScoresDropdown" class="dropdown-content">
+          <ul id="highScoresList"></ul>
+        </div>
+      </div>
       <div id="title">
         <h1 id="gametitle">Codle</h1>
         <h3>Code Breaker Game! Guess the 4-digit code!</h3>
@@ -30,7 +33,7 @@
           </div>
         </div>
         <div class="controlbtns">
-          <button onclick="checkGuess()">Guess</button>
+          <button id="guessbtn" onclick="checkGuess()">Guess</button>
           <button onclick="clearInput()">Clear</button>
         </div>
       </div>
@@ -38,16 +41,13 @@
         <h2>Guess History</h2>
         <ol class="guess-list"></ol>
       </div>
-      
-      <p id="message"></p>
       <button id="reset" onclick="resetGame()">Reset Game</button>
-      <div id="highScore">High Scores</div>
     </div>
     <div id="hints-container">
       
       <div class="title">
         <img id="hints" src="assets/hints.png" alt="Image description">
-        <h1>Hints and LifeLines</h1>
+        <h1>Hints & LifeLines</h1>
       </div>
 
       <ul id="hints-list">

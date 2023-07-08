@@ -6,6 +6,7 @@ let checkAttempts = 3;
 let highLowAttempts = 3;
 let divAttempts = 3;
 let guessHistory = [];
+let guess;
 
 
 // Generate a random 4-digit 
@@ -23,7 +24,7 @@ function checkGuess() {
   let guess3 = document.getElementById("guess3").value;
   let guess4 = document.getElementById("guess4").value;
 
-  let guess = guess1 + guess2 + guess3 + guess4;
+  guess = guess1 + guess2 + guess3 + guess4;
 
   if (guess.length !== 4 || isNaN(guess)) {
     alert("Please enter a 4-digit numerical guess!");
@@ -33,12 +34,24 @@ function checkGuess() {
   attempts--;
 
   if (guess === secretCode) {
-    showResult("Congratulations! You guessed the secret code!", true);
+    updateGuessHistory();
+    addHighScore(10 - attempts);
+    document.getElementById("remainingAttempts").innerHTML = `Congratulations!<br>You guessed the secret code in ${10 - attempts} attempts!`;
+    document.getElementById("remainingAttempts").style.color = "#037301";
+    document.getElementById("remainingAttempts").style.fontSize = "25px";
+
+    showResult();
     return;
   }
 
   if (attempts === 0) {
-    showResult(`Game Over! The secret code was ${secretCode}`, false);
+    updateGuessHistory()
+    let msg = document.getElementById("remainingAttempts").textContent;
+
+    document.getElementById("remainingAttempts").style.fontSize = "25px";
+    document.getElementById("remainingAttempts").style.color = "red";
+    document.getElementById("remainingAttempts").innerHTML = msg + "<br>Game Over ! The secret code was " + secretCode + " !";
+    showResult();
     return;
   }
 
@@ -48,11 +61,10 @@ function checkGuess() {
 }
 
 function clearInput() {
-  document.getElementById("guess1").value="";
-  document.getElementById("guess2").value="";
-  document.getElementById("guess3").value="";
-  document.getElementById("guess4").value="";
-
+  document.getElementById("guess1").value = "";
+  document.getElementById("guess2").value = "";
+  document.getElementById("guess3").value = "";
+  document.getElementById("guess4").value = "";
 
 }
 
@@ -72,8 +84,6 @@ function provideCheckDigitsHint() {
     document.getElementById("cdbtn").disabled = true;
   }
   if (checkAttempts > 0) {
-    let guess = document.getElementById("guess").value;
-    console.log(guess);
     let checkDigits = getCorrectDigits(guess);
     document.getElementById("checkdig").textContent = checkDigits;
     document.getElementById("dattempts").textContent = `Checks left: ${--checkAttempts}`;
@@ -86,8 +96,6 @@ function provideHighLowHint() {
     document.getElementById("hlbtn").disabled = true;
   }
   if (highLowAttempts > 0) {
-    let guess = document.getElementById("guess").value;
-    console.log(guess);
     let highLow = getHighLowHint(guess);
     document.getElementById("highlow").textContent = highLow;
     document.getElementById("hlattempts").textContent = `Checks left: ${--highLowAttempts}`;
@@ -99,8 +107,6 @@ function provideDivisibilityHint() {
     document.getElementById("divbtn").disabled = true;
   }
   if (divAttempts > 0) {
-    let guess = document.getElementById("guess").value;
-    console.log(guess);
     let num = prompt("Please enter the number you want to check divisibility with")
     let divornot = getCheckDivHint(guess, num);
     document.getElementById("checkdiv").textContent = divornot;
@@ -110,7 +116,6 @@ function provideDivisibilityHint() {
 
 function getCorrectDigits(guess) {
   let checkDigits = "";
-  console.log(secretCode);
   for (let i = 0; i < 4; i++) {
     let flag = 0;
     if (guess[i] === secretCode[i]) {
@@ -133,7 +138,6 @@ function getCorrectDigits(guess) {
 
 function getHighLowHint(guess) {
   let highLow = "";
-  console.log(secretCode);
   for (let i = 0; i < 4; i++) {
     if (guess[i] < secretCode[i]) {
       highLow += "H ";
@@ -164,11 +168,8 @@ function updateGuessHistory() {
   document.getElementById("remainingAttempts").textContent = `Remaining Attempts: ${attempts}`;
 }
 
-function showResult(message, isWin) {
-  document.getElementById("message").textContent = message;
-  document.getElementById("message").style.color = isWin ? "green" : "red";
-  document.getElementById("remainingAttempts").textContent = isWin ? `Remaining Attempts: ${attempts}` : `Remaining Attempts: ${0}`;;
-  document.getElementById("guess").disabled = true;
+function showResult() {
+  document.getElementById("guessbtn").disabled = true;
   document.getElementsByTagName("button")[0].disabled = true;
   let buttons = document.getElementsByTagName("button");
   for (let i = 1; i < buttons.length; i++) {
@@ -176,21 +177,72 @@ function showResult(message, isWin) {
   }
   document.getElementById("reset").disabled = false;
 }
+
+
+
+
+let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+function updateHighScores() {
+  const highScoresList = document.getElementById('highScoresList');
+  highScoresList.innerHTML = '';
+
+  for (let i = 0; i < highScores.length; i++) {
+    const scoreItem = document.createElement('li');
+    const scoreText = document.createElement('span');
+    scoreText.textContent = highScores[i];
+    scoreItem.appendChild(scoreText);
+    highScoresList.appendChild(scoreItem);
+  }
+}
+
+function saveHighScores() {
+  localStorage.setItem('highScores', JSON.stringify(highScores));
+}
+
+function addHighScore(score) {
+  highScores.push(score);
+  highScores.sort((a, b) => b - a);
+  if (highScores.length > 3) {
+    highScores.pop();
+  }
+  updateHighScores();
+  saveHighScores();
+}
+
+updateHighScores();
+
+function toggleHighScores() {
+  const dropdown = document.getElementById('highScoresDropdown');
+  dropdown.classList.toggle('show');
+}
+
+document.getElementById('highScore').addEventListener('click', toggleHighScores);
+
+// localStorage.clear();
+
+
+
+
 function resetGame() {
   attempts = 10;
   checkAttempts = 3;
   highLowAttempts = 3;
   divAttempts = 3;
   guessHistory = [];
+  secretCode = generateSecretCode();
 
-  document.getElementById("guess").value = "";
-  document.getElementById("message").textContent = "";
 
-  document.getElementById("guess").disabled = false;
+  document.getElementById("guessbtn").value = "";
+
+  document.getElementById("guessbtn").disabled = false;
   document.getElementsByTagName("button")[0].disabled = false;
   let buttons = document.getElementsByTagName("button");
   for (let i = 1; i < buttons.length; i++) {
     buttons[i].disabled = false;
+  }
+  for (let i = 1; i < 5; i++) {
+    document.getElementById(`guess${i}`).value = "";
   }
 
   updateGuessHistory();
@@ -204,6 +256,8 @@ function resetGame() {
   document.getElementById("hlattempts").textContent = "Checks left: " + highLowAttempts;
   document.getElementById("checkdiv").textContent = "";
   document.getElementById("divattempts").textContent = "Checks left: " + divAttempts;
+  document.getElementById("remainingAttempts").style.color = "black";
+  document.getElementById("remainingAttempts").style.fontSize = "20px";
 }
 
 
