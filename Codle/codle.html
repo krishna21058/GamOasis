@@ -15,24 +15,36 @@
 
   <div id="container">
     <div id="game-container">
-      <h1>Code Breaker Game</h1>
-      <p>Guess the 4-digit code!</p>
-      <div class="game">
-        <input type="text" id="guess" placeholder="Enter your guess" maxlength="4">
-        <button onclick="checkGuess()">Guess</button>
+      <div id="title">
+        <h1 id="gametitle">Codle</h1>
+        <h3>Code Breaker Game! Guess the 4-digit code!</h3>
       </div>
-      <div id="highScore">Loading high scores...</div>
+      <div class="game">
+        <div id="remainingAttempts">Remaining Attempts: 10</div>
+        <div class="code-input">
+          <div class="code-input">
+            <input type="text" id="guess1" maxlength="1" oninput="moveToNextInput(1)">
+            <input type="text" id="guess2" maxlength="1" oninput="moveToNextInput(2)">
+            <input type="text" id="guess3" maxlength="1" oninput="moveToNextInput(3)">
+            <input type="text" id="guess4" maxlength="1" oninput="moveToNextInput(4)">
+          </div>
+        </div>
+        <div class="controlbtns">
+          <button onclick="checkGuess()">Guess</button>
+          <button onclick="clearInput()">Clear</button>
+        </div>
+      </div>
       <div id="guessHistory">
         <h2>Guess History</h2>
         <ol class="guess-list"></ol>
       </div>
-
-      <div id="remainingAttempts">Remaining Attempts: </div>
+      
       <p id="message"></p>
       <button id="reset" onclick="resetGame()">Reset Game</button>
+      <div id="highScore">High Scores</div>
     </div>
     <div id="hints-container">
-
+      
       <div class="title">
         <img id="hints" src="assets/hints.png" alt="Image description">
         <h1>Hints and LifeLines</h1>
@@ -41,30 +53,28 @@
       <ul id="hints-list">
 
         <li>
-          <button onclick="provideHighLowHint()">
+          <button id="hlbtn" onclick="provideHighLowHint()">
             <img src="assets/higherlower.png" alt="Image description">
             <h3>Higher/Lower</h3>
           </button>
           <h3 id="highlow" class="displayhint"></h3>
-          <h3 id="hlattempts">Checks left: 5</h3>
+          <h3 id="hlattempts" class="attempts">Checks left: 3</h3>
         </li>
         <li>
-          <button onclick="provideCheckDigitsHint()">
+          <button id="cdbtn" onclick="provideCheckDigitsHint()">
             <img src="assets/check.png" alt="Image description">
             <h3>Digit Correctness</h3>
           </button>
-          <h6 id="checkdig" class="displayhint"></h6>
-          <h3 id="dattempts">Checks left: 4</h3>
+          <h3 id="checkdig" class="displayhint"></h3>
+          <h3 id="dattempts" class="attempts">Checks left: 3</h3>
         </li>
         <li>
-          <button onclick="provideDivisibilityHint()">
+          <button id="divbtn" onclick="provideDivisibilityHint()">
             <img src="assets/divisible.png" alt="Image description">
             <h3>Divisible by</h3>
           </button>
-
-          <!-- <input type="number"> -->
           <h3 id="checkdiv" class="displayhint"></h3>
-          <h3 id="divattempts">Checks left: 3</h3>
+          <h3 id="divattempts" class="attempts">Checks left: 3</h3>
         </li>
       </ul>
     </div>

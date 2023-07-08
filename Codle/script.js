@@ -1,14 +1,14 @@
-// Generate a random 4-digit codeOWatt
+
 let secretCode = generateSecretCode();
 
-// Initialize game variables
-let attempts = 10; // Number of attempts the player has
-let checkAttempts = 4; // Number of check digit attempts the player has
-let highLowAttempts = 5; // Number of high/low attempts the player has
-let divAttempts = 3; // Number of high/low attempts the player has
-let guessHistory = []; // Array to store the player's guesses
+let attempts = 10;
+let checkAttempts = 3;
+let highLowAttempts = 3;
+let divAttempts = 3;
+let guessHistory = [];
 
-// Function to generate a random 4-digit code
+
+// Generate a random 4-digit 
 function generateSecretCode() {
   let code = "";
   for (let i = 0; i < 4; i++) {
@@ -17,70 +17,94 @@ function generateSecretCode() {
   return code;
 }
 
-// Function to check the player's guess
 function checkGuess() {
-  let guessInput = document.getElementById("guess");
-  let guess = guessInput.value;
+  let guess1 = document.getElementById("guess1").value;
+  let guess2 = document.getElementById("guess2").value;
+  let guess3 = document.getElementById("guess3").value;
+  let guess4 = document.getElementById("guess4").value;
 
-  // Validate the guess
+  let guess = guess1 + guess2 + guess3 + guess4;
+
   if (guess.length !== 4 || isNaN(guess)) {
     alert("Please enter a 4-digit numerical guess!");
     return;
   }
 
-  // Reduce the attempts count
   attempts--;
 
-  // Check if the guess is correct
   if (guess === secretCode) {
     showResult("Congratulations! You guessed the secret code!", true);
     return;
   }
 
-  // Check if the player has any attempts left
   if (attempts === 0) {
     showResult(`Game Over! The secret code was ${secretCode}`, false);
     return;
   }
 
-  // Store the guess in the history
   guessHistory.push(guess);
   updateGuessHistory();
+
 }
+
+function clearInput() {
+  document.getElementById("guess1").value="";
+  document.getElementById("guess2").value="";
+  document.getElementById("guess3").value="";
+  document.getElementById("guess4").value="";
+
+
+}
+
+
+
+
+function moveToNextInput(currentInp) {
+  if (currentInp < 4) {
+    let nextInp = document.getElementById(`guess${currentInp + 1}`);
+    nextInp.focus();
+  }
+}
+
 function provideCheckDigitsHint() {
+  if (checkAttempts === 1) {
+    document.getElementById("cdbtn").style.backgroundColor = "#40a345";
+    document.getElementById("cdbtn").disabled = true;
+  }
   if (checkAttempts > 0) {
     let guess = document.getElementById("guess").value;
     console.log(guess);
     let checkDigits = getCorrectDigits(guess);
     document.getElementById("checkdig").textContent = checkDigits;
     document.getElementById("dattempts").textContent = `Checks left: ${--checkAttempts}`;
-  } else {
-    alert("You have used all your 'Check Digits' hints!");
   }
 }
 
-// Function to provide the "High/Low" hint
 function provideHighLowHint() {
+  if (highLowAttempts === 1) {
+    document.getElementById("hlbtn").style.backgroundColor = "#40a345";
+    document.getElementById("hlbtn").disabled = true;
+  }
   if (highLowAttempts > 0) {
     let guess = document.getElementById("guess").value;
     console.log(guess);
     let highLow = getHighLowHint(guess);
     document.getElementById("highlow").textContent = highLow;
     document.getElementById("hlattempts").textContent = `Checks left: ${--highLowAttempts}`;
-  } else {
-    alert("You have used all your 'High/Low' hints!");
   }
 }
 function provideDivisibilityHint() {
+  if (divAttempts === 1) {
+    document.getElementById("divbtn").style.backgroundColor = "#40a345";
+    document.getElementById("divbtn").disabled = true;
+  }
   if (divAttempts > 0) {
     let guess = document.getElementById("guess").value;
     console.log(guess);
     let num = prompt("Please enter the number you want to check divisibility with")
-    let divornot = getCheckDivHint(guess,num);
+    let divornot = getCheckDivHint(guess, num);
     document.getElementById("checkdiv").textContent = divornot;
     document.getElementById("divattempts").textContent = `Checks left: ${--divAttempts}`;
-  } else {
-    alert("You have used all your 'High/Low' hints!");
   }
 }
 
@@ -88,19 +112,19 @@ function getCorrectDigits(guess) {
   let checkDigits = "";
   console.log(secretCode);
   for (let i = 0; i < 4; i++) {
-    let flag=0;
+    let flag = 0;
     if (guess[i] === secretCode[i]) {
-      checkDigits += guess[i]+" ";
-      flag=1;
+      checkDigits += guess[i] + " ";
+      flag = 1;
     }
-    for(let j=0; j<4; j++){
-      if(guess[i]==secretCode[j] && flag===0){
-        checkDigits += "* "; 
-        flag=1;
+    for (let j = 0; j < 4; j++) {
+      if (guess[i] == secretCode[j] && flag === 0) {
+        checkDigits += "* ";
+        flag = 1;
         break;
-      } 
+      }
     }
-    if(flag===0) {
+    if (flag === 0) {
       checkDigits += "- ";
     }
   }
@@ -112,17 +136,17 @@ function getHighLowHint(guess) {
   console.log(secretCode);
   for (let i = 0; i < 4; i++) {
     if (guess[i] < secretCode[i]) {
-      highLow += "L ";
-    } else if (guess[i] > secretCode[i]) {
       highLow += "H ";
+    } else if (guess[i] > secretCode[i]) {
+      highLow += "L ";
     } else {
       highLow += "= ";
     }
   }
   return highLow;
 }
-function getCheckDivHint(guess,num) {
-  if(secretCode%num==0){
+function getCheckDivHint(guess, num) {
+  if (secretCode % num == 0) {
     return "Yes"
   }
   return "No";
@@ -143,39 +167,37 @@ function updateGuessHistory() {
 function showResult(message, isWin) {
   document.getElementById("message").textContent = message;
   document.getElementById("message").style.color = isWin ? "green" : "red";
-  document.getElementById("remainingAttempts").textContent= isWin ? `Remaining Attempts: ${attempts}` : `Remaining Attempts: ${0}`;;
+  document.getElementById("remainingAttempts").textContent = isWin ? `Remaining Attempts: ${attempts}` : `Remaining Attempts: ${0}`;;
   document.getElementById("guess").disabled = true;
   document.getElementsByTagName("button")[0].disabled = true;
-  let buttons=document.getElementsByTagName("button");
+  let buttons = document.getElementsByTagName("button");
   for (let i = 1; i < buttons.length; i++) {
     buttons[i].disabled = true;
   }
   document.getElementById("reset").disabled = false;
 }
 function resetGame() {
-  // Reset game variables
   attempts = 10;
-  checkAttempts = 4;
-  highLowAttempts = 5;
+  checkAttempts = 3;
+  highLowAttempts = 3;
   divAttempts = 3;
   guessHistory = [];
 
-  // Reset input and message
   document.getElementById("guess").value = "";
   document.getElementById("message").textContent = "";
 
-  // Enable input and guess button
   document.getElementById("guess").disabled = false;
   document.getElementsByTagName("button")[0].disabled = false;
-  let buttons=document.getElementsByTagName("button");
+  let buttons = document.getElementsByTagName("button");
   for (let i = 1; i < buttons.length; i++) {
     buttons[i].disabled = false;
   }
 
-  // Clear guess history
   updateGuessHistory();
+  document.getElementById("hlbtn").style.backgroundColor = "#60e060";
+  document.getElementById("cdbtn").style.backgroundColor = "#60e060";
+  document.getElementById("divbtn").style.backgroundColor = "#60e060";
 
-  // Reset hint displays and attempts count
   document.getElementById("checkdig").textContent = "";
   document.getElementById("dattempts").textContent = "Checks left: " + checkAttempts;
   document.getElementById("highlow").textContent = "";
