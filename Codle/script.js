@@ -7,8 +7,10 @@ let highLowAttempts = 3;
 let divAttempts = 3;
 let guessHistory = [];
 let guess;
+const remainingAttemptsContainer = document.getElementById("remainingAttempts");
+const controlButtonsContainer = document.getElementById("controlbtns");
 
-
+let won=false;
 // Generate a random 4-digit 
 function generateSecretCode() {
   let code = "";
@@ -18,47 +20,83 @@ function generateSecretCode() {
   return code;
 }
 
+
 function checkGuess() {
-  let guess1 = document.getElementById("guess1").value;
-  let guess2 = document.getElementById("guess2").value;
-  let guess3 = document.getElementById("guess3").value;
-  let guess4 = document.getElementById("guess4").value;
+  let guess1 = document.getElementById("guess1").value.trim();
+  let guess2 = document.getElementById("guess2").value.trim();
+  let guess3 = document.getElementById("guess3").value.trim();
+  let guess4 = document.getElementById("guess4").value.trim();
 
   guess = guess1 + guess2 + guess3 + guess4;
 
+  for(let i=0; i<guess.length;i++){
+    if(guess[i]==="") {
+      alert("Please enter a 4-digit numerical guess!");
+      return; 
+    }
+  }
   if (guess.length !== 4 || isNaN(guess)) {
     alert("Please enter a 4-digit numerical guess!");
     return;
   }
+  console.log(secretCode);
 
   attempts--;
-
   if (guess === secretCode) {
+    won=true;
     updateGuessHistory();
     addHighScore(10 - attempts);
-    document.getElementById("remainingAttempts").innerHTML = `Congratulations!<br>You guessed the secret code in ${10 - attempts} attempts!`;
-    document.getElementById("remainingAttempts").style.color = "#037301";
-    document.getElementById("remainingAttempts").style.fontSize = "25px";
+    document.getElementById("guessMsg").textContent = "";
+  
+    const remainingAttemptsContainer = document.getElementById("remainingAttempts");
+    remainingAttemptsContainer.innerHTML = "";
+  
+    const congratulationsContainer = document.createElement("h2");
+    congratulationsContainer.classList.add("animate-congratulations");
+    congratulationsContainer.textContent = "Congratulations!";
+    congratulationsContainer.style.color = "blue";
+  
+    const waveIcon = document.createElement("span");
+    waveIcon.classList.add("animate-wave");
+    waveIcon.textContent = "🎉";
+    congratulationsContainer.appendChild(waveIcon);
+  
+    const attemptsText = document.createElement("p");
+    attemptsText.textContent = `You guessed the secret code in ${10 - attempts} attempts!`;
+    attemptsText.style.color = "blue";
+    attemptsText.style.marginTop = "0";
+  
+    remainingAttemptsContainer.appendChild(congratulationsContainer);
+    remainingAttemptsContainer.appendChild(attemptsText);
+    remainingAttemptsContainer.style.marginTop = "0";
+    controlButtonsContainer.style.marginTop = "15px";
 
+  
     showResult();
     return;
   }
+  
+  else {
+    document.getElementById("guessMsg").textContent = "Wrong Guess!";
+    document.getElementById("guessMsg").style.color = "red";
+  }
 
   if (attempts === 0) {
-    updateGuessHistory()
+    updateGuessHistory();
     let msg = document.getElementById("remainingAttempts").textContent;
 
     document.getElementById("remainingAttempts").style.fontSize = "25px";
     document.getElementById("remainingAttempts").style.color = "red";
-    document.getElementById("remainingAttempts").innerHTML = msg + "<br>Game Over ! The secret code was " + secretCode + " !";
+    document.getElementById("remainingAttempts").innerHTML = msg + "<br>Game Over! The secret code was " + secretCode + "!";
+
     showResult();
     return;
   }
 
   guessHistory.push(guess);
   updateGuessHistory();
-
 }
+
 
 function clearInput() {
   document.getElementById("guess1").value = "";
@@ -157,7 +195,7 @@ function getCheckDivHint(guess, num) {
 }
 
 function updateGuessHistory() {
-  let guessHistoryContainer = document.querySelector("#guessHistory .guess-list");
+  let guessHistoryContainer = document.querySelector("#guessHistory #guess-list");
   guessHistoryContainer.innerHTML = "";
 
   for (let i = 0; i < guessHistory.length; i++) {
@@ -176,6 +214,7 @@ function showResult() {
     buttons[i].disabled = true;
   }
   document.getElementById("reset").disabled = false;
+  document.getElementById("infobtn").disabled = false;
 }
 
 
@@ -202,7 +241,7 @@ function saveHighScores() {
 
 function addHighScore(score) {
   highScores.push(score);
-  highScores.sort((a, b) => b - a);
+  highScores.sort((a, b) => a-b);
   if (highScores.length > 3) {
     highScores.pop();
   }
@@ -222,6 +261,44 @@ document.getElementById('highScore').addEventListener('click', toggleHighScores)
 // localStorage.clear();
 
 
+//to transfer cursor and remove elemtent of previous i/p box if backspace is pressed and to check the guess if Enter is pressed.
+document.addEventListener('keydown', function (event) {
+  if (event.key === "Enter" && attempts>0 && won===false) {
+    console.log("trig");
+    checkGuess();
+  }
+  if (event.key === 'Backspace') {
+    let focusedElement = document.activeElement;
+    if (focusedElement.tagName === 'INPUT' && focusedElement.value === '') {
+      let previousElement = focusedElement.previousElementSibling;
+      if (previousElement) {
+        event.preventDefault();
+        if (previousElement.tagName === 'INPUT') {
+          previousElement.focus();
+          previousElement.value = '';
+        } else {
+          let inputElements = previousElement.getElementsByTagName('input');
+          if (inputElements.length > 0) {
+            let lastInputElement = inputElements[inputElements.length - 1];
+            lastInputElement.focus();
+            lastInputElement.value = '';
+          }
+        }
+      }
+    } else {
+      focusedElement.value = '';
+    }
+  }
+});
+
+document.getElementById('infobtn').addEventListener('click', function () {
+  var infoContent = document.getElementById('info-content');
+  if (infoContent.style.display === 'none') {
+    infoContent.style.display = 'block';
+  } else {
+    infoContent.style.display = 'none';
+  }
+});
 
 
 function resetGame() {
@@ -231,6 +308,7 @@ function resetGame() {
   divAttempts = 3;
   guessHistory = [];
   secretCode = generateSecretCode();
+  guess="";
 
 
   document.getElementById("guessbtn").value = "";
@@ -249,6 +327,7 @@ function resetGame() {
   document.getElementById("hlbtn").style.backgroundColor = "#60e060";
   document.getElementById("cdbtn").style.backgroundColor = "#60e060";
   document.getElementById("divbtn").style.backgroundColor = "#60e060";
+  document.getElementById("guessMsg").textContent = "";
 
   document.getElementById("checkdig").textContent = "";
   document.getElementById("dattempts").textContent = "Checks left: " + checkAttempts;
@@ -258,6 +337,8 @@ function resetGame() {
   document.getElementById("divattempts").textContent = "Checks left: " + divAttempts;
   document.getElementById("remainingAttempts").style.color = "black";
   document.getElementById("remainingAttempts").style.fontSize = "20px";
+  remainingAttemptsContainer.style.marginTop="30px";
+  controlButtonsContainer.style.marginTop = "30px";
 }
 
 

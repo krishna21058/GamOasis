@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Code Breaker Game</title>
   <meta charset="utf-8">
@@ -9,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
   <div id="container">
     <div id="game-container">
@@ -32,19 +34,63 @@
             <input type="text" id="guess4" maxlength="1" oninput="moveToNextInput(4)">
           </div>
         </div>
-        <div class="controlbtns">
+        <div id="controlbtns">
           <button id="guessbtn" onclick="checkGuess()">Guess</button>
+          <h3 id="guessMsg"></h3>
           <button onclick="clearInput()">Clear</button>
         </div>
       </div>
       <div id="guessHistory">
         <h2>Guess History</h2>
-        <ol class="guess-list"></ol>
+        <ol id="guess-list"></ol>
       </div>
       <button id="reset" onclick="resetGame()">Reset Game</button>
     </div>
+
     <div id="hints-container">
-      
+      <button id="infobtn">
+        <img src="assets/info.png" alt="">
+      </button>
+      <div id="info-content">
+          <h2 class="infotitle"><strong>Codle | Code Breaker Game! Guess the 4-digit code!</strong></h2>
+          <h3 class="infotitle"> Test Your Code-Breaking Skills with Hints and Lifelines</h3>
+
+          <p><u><strong>About the Game</strong></u></p>
+          <p>
+            Codle is a classic code-breaking game that challenges your logical thinking and deduction skills.
+            Can you crack
+            the secret 4-digit code? With 10,000 possible combinations, it's a game of wits, strategy, and careful
+            analysis.
+          </p>
+          <p><u><strong>Hints and Lifelines</strong></u></p>
+          <p>
+            <strong>Higher/Lower </strong> <img src="assets/higherlower.png" alt=""> <br> Get valuable information about the relative values of each
+            digit in your guess
+            compared to the secret code. Use "<strong>H</strong>" for higher, "<strong>L</strong>" for lower, and
+            "<strong>=</strong>" for exact matches to deduce the correct
+            values.
+          </p>
+          <p>
+            <strong>Digit Checktness </strong> <img src="assets/check.png" alt=""> <br>Learn about the correctness of individual digits in your
+            guess. The digit itself
+            indicates a correct digit in the correct position, "<strong>*</strong>" indicates a correct digit in the
+            wrong position, and "<strong>-</strong>"
+            indicates no match. Refine your guesses using this hint.
+          </p>
+          <p>
+            <strong>Divisible By </strong><img src="assets/divisible.png" alt=""> <br> Check if the secret code is divisible by a specific
+            number. Enter a
+            number and find out if it divides the code. Use this lifeline strategically to narrow down the
+            possibilities.
+          </p>
+          <p><u><strong>Lifelines and Strategy</strong></u></p>
+          <p>
+            You have only 10 attempts to crack the code. Utilize the hints, refine your understanding of the secret code
+            with each guess, and keep track of your progress in the guess history. Can you achieve a high score?
+          </p>
+
+        </div>
+
       <div class="title">
         <img id="hints" src="assets/hints.png" alt="Image description">
         <h1>Hints & LifeLines</h1>

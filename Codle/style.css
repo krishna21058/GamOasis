@@ -29,15 +29,15 @@ body {
 }
 
 #highScore {
-  top: 30px;
-  padding: 0;
+  top: 50px;
+  padding: 5px 5px;
   position: relative;
   background-color: #fbc344;
   font-size: 20px;
   border: 2.5px solid black;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  left: 250px;
+  left: 270px;
 }
 
 #highScore h5 {
@@ -88,12 +88,12 @@ body {
 #game-container #gametitle {
   font-size: 50px;
   text-align: center;
-
 }
 
 #game-container h3 {
   font-size: 25px;
   text-align: center;
+  margin-top: 15px;
 }
 
 
@@ -123,16 +123,16 @@ body {
   border-radius: 7.5px;
 }
 
-.game .controlbtns {
+.game #controlbtns {
   display: flex;
   justify-content: space-around;
-  gap: 100px;
+  /* gap: 100px; */
   align-items: center;
   margin-top: 30px;
  
 }
 
-.game .controlbtns button {
+.game #controlbtns button {
   padding: 5px 10px;
   background-color: #fbc344;
   color: black;
@@ -147,7 +147,7 @@ body {
   font-weight: bold;
 }
 
-.guess-list {
+#guess-list {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 10px;
@@ -156,16 +156,25 @@ body {
   list-style-type: none;
 }
 
-#guessHistory h2 {
-  font-size: 20px;
+#guessHistory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.guess-list li {
+#guessHistory h2 {
+  font-size: 20px;
+  display: inline;
+  margin: 0;
+}
+
+#guess-list li {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 15px;
-  background-color: lightblue;
+  background-color: lightcyan;
   border-radius: 5px;
   font-weight: bold;
   font-size: 20px;
@@ -195,6 +204,58 @@ button:hover {
   padding: 45px;
   height: 100%;
 }
+
+#hints-container {
+  position: relative;
+}
+
+#hints-container #infobtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0px;
+  background-color: rgb(2, 73, 140);
+  border: none;
+  width: auto;
+  position: absolute;
+  right: 20px;
+  top: 50px;
+  cursor: pointer;
+}
+
+#hints-container #infobtn img {
+  width: 40px; 
+}
+
+#info-content {
+  background-color: lightcyan;
+  display: none;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  position: absolute;
+  right: 20px;
+  top: 95px;
+  width: 800px;
+}
+#info-content p img{
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+  vertical-align: middle;
+}
+
+#info-content p{
+  margin: 15px auto;
+}
+
+#info-content .infotitle, #info-content p strong{
+  color: darkblue;
+}
+
+
+
+
 
 #hints-container .title {
   color: white;
@@ -281,3 +342,14 @@ button:hover {
 #hints-list input {
   width: 55px;
 }
+@keyframes wave {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-congratulations {
+  animation: wave 0.5s ease-in-out infinite;
+  display: inline-block;
+}
+
