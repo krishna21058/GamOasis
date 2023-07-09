@@ -39,7 +39,6 @@ function checkGuess() {
     alert("Please enter a 4-digit numerical guess!");
     return;
   }
-  console.log(secretCode);
 
   attempts--;
   if (guess === secretCode) {
@@ -264,7 +263,6 @@ document.getElementById('highScore').addEventListener('click', toggleHighScores)
 //to transfer cursor and remove elemtent of previous i/p box if backspace is pressed and to check the guess if Enter is pressed.
 document.addEventListener('keydown', function (event) {
   if (event.key === "Enter" && attempts>0 && won===false) {
-    console.log("trig");
     checkGuess();
   }
   if (event.key === 'Backspace') {

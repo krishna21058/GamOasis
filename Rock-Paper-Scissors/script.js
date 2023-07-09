@@ -3,7 +3,6 @@ function final_result(pscore, cscore) {
   let compScore = document.getElementById('comp-score')
   let computerChoice = document.getElementById('comp-chooses')
   let result = document.getElementById('round-result')
-  console.log("res")
   if (Number(pscore.innerText) == 10) {
     let finres = document.getElementById("final-result")
     finres.innerText = "You Win! 🎉"
@@ -88,12 +87,12 @@ function getResult(playerChoice, computerChoice, pscore, cscore) {
 function onClick(playerChoice, pscore, cscore) {
   let Choices = ['Rock', 'Paper', 'Scissors'];
   const computerChoice = Choices[Math.floor(Math.random() * 3)];
-  console.log(playerChoice.value)
   let cChoice = document.getElementById('comp-chooses')
   cChoice.style.display = 'block'
   let img = document.querySelector("#comp-chooses img")
   let lab = document.querySelector("#comp-chooses label")
-  img.src = `assets/${computerChoice}_inv.png`
+  let temp=computerChoice.toLowerCase()
+  img.src = `assets/${temp}_inv.png`
   lab.innerText = `${playerChoice.value}`
 
 
@@ -137,7 +136,6 @@ function playGame() {
   pScore.innerText = 0
   cScore.innerText = 0
   // while ((Number(pScore.innerText) < 0) && Number(cScore.innerText) < 10) {
-  console.log("here")
   rock.onclick = () => onClick(rock, pScore, cScore)
   paper.onclick = () => onClick(paper, pScore, cScore)
   scissors.onclick = () => onClick(scissors, pScore, cScore)
