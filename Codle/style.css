@@ -25,7 +25,7 @@ body {
   padding: 40px;
   padding-top: 0px;
   justify-content: flex-start;
-  
+
 }
 
 #highScore {
@@ -51,7 +51,7 @@ body {
   background-color: #fbc344;
   border: 2px solid black;
   min-width: 95px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 0;
   text-align: center;
   z-index: 1;
@@ -103,7 +103,7 @@ body {
   font-size: 20px;
   font-weight: bold;
   width: 600px;
- }
+}
 
 
 .code-input {
@@ -129,7 +129,7 @@ body {
   /* gap: 100px; */
   align-items: center;
   margin-top: 30px;
- 
+
 }
 
 .game #controlbtns button {
@@ -224,7 +224,7 @@ button:hover {
 }
 
 #hints-container #infobtn img {
-  width: 40px; 
+  width: 40px;
 }
 
 #info-content {
@@ -238,18 +238,20 @@ button:hover {
   top: 95px;
   width: 800px;
 }
-#info-content p img{
+
+#info-content p img {
   width: 20px;
   height: 20px;
   margin: 2px;
   vertical-align: middle;
 }
 
-#info-content p{
+#info-content p {
   margin: 15px auto;
 }
 
-#info-content .infotitle, #info-content p strong{
+#info-content .infotitle,
+#info-content p strong {
   color: darkblue;
 }
 
@@ -342,10 +344,19 @@ button:hover {
 #hints-list input {
   width: 55px;
 }
+
 @keyframes wave {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .animate-congratulations {
@@ -353,3 +364,19 @@ button:hover {
   display: inline-block;
 }
 
+#hints-container #quit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  position: absolute;
+  right: 20px;
+  padding: 5px 10px;
+  background-color: #fbc344;
+  font-size: 20px;
+
+  border: 2.5px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}

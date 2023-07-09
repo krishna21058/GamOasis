@@ -8,15 +8,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
 }
+
 
 #wrapper {
     background: #636fab;
     color: black;
     width: 100%;
     height: 100%;
-
 }
+
+
 
 .container {
     display: flex;
@@ -84,93 +89,13 @@ h1 {
 
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-#modes-wrapper {
-    background: #00244b;
-    color: white;
-    width: 100vw; /* Change to viewport units */
-    height: 100vh; /* Change to viewport units */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modes-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    max-width: 600px; /* Adjust max-width for better responsiveness */
-    padding: 40px; /* Increase padding for more spacing */
-    text-align: center; 
-}
-
-.title {
-    margin-bottom: 40px; /* Add margin-bottom for spacing */
-    font-size: 45px;
-    text-align: center;
-}
-
-.modes {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 40px; /* Add gap between columns */
-    margin-top: 20px; /* Add margin for spacing */
-}
-.mode-column {
-    flex: 1; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-
-
-.modes button {
-    background-color: #c3f3f4;
-    border: 5px solid #415a77;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px; 
-    cursor: pointer;
-    /* transition: background-color 0.3s ease;  */
-    width: 275px;
-}
-
-.modes img {
-    height: 130px;
-    width: auto;
-    cursor: pointer;
-    padding: 0;
-    margin-bottom: 10px; 
-}
-
-.modes label {
-    text-align: center;
-    font-family: 'Ubuntu', sans-serif;
-    display: block;
-    font-size: 20px;
-    margin-top: 5px; 
-}
-
-
 
 
 #games-wrapper {
     background: #00244b;
     color: white;
-    width: 100vw; /* Change to viewport units */
-    height: 100vh; /* Change to viewport units */
+    width: 100vw; 
+    height: 100vh; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -181,13 +106,13 @@ h1 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    max-width: 600px; /* Adjust max-width for better responsiveness */
-    padding: 40px; /* Increase padding for more spacing */
+    max-width: 600px; 
+    padding: 40px; 
     text-align: center; 
 }
 
 .title {
-    margin-bottom: 40px; /* Add margin-bottom for spacing */
+    margin-bottom: 40px; 
     font-size: 45px;
     text-align: center;
 }
@@ -196,8 +121,8 @@ h1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 40px; /* Add gap between columns */
-    margin-top: 20px; /* Add margin for spacing */
+    gap: 40px; 
+    margin-top: 20px; 
 }
 .game-column {
     flex: 1; 
@@ -218,7 +143,6 @@ h1 {
     justify-content: center;
     padding: 10px; 
     cursor: pointer;
-    /* transition: background-color 0.3s ease;  */
     width: 275px;
 }
 

@@ -4,18 +4,23 @@ html,body {
     width: 100%;
     padding: 0;
     margin: 0;
+    overflow: hidden;
 }
 
 .wrapper {
-    background: #1b263b;
-    color: white;
-    display: flex;
+    /* background: #1b263b; */
+    position: relative;
     align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background: url('../assets/bg.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
     justify-content: center;
     width: 100%;
-    height: 100%;
     flex-direction: column;
     gap: 50px;
+    
 }
 
 .buttons {
@@ -30,7 +35,7 @@ html,body {
 
 .buttons button{
     background-color: #e0fbfc;
-    border:7.5px solid #415a77;
+    border:7.5px solid rgb(1, 67, 129);
     border-radius: 20px;
 }
 .buttons img{
@@ -44,6 +49,7 @@ html,body {
     font-family: 'Ubuntu', sans-serif;
     display: block;
     font-size: 25px;
+    font-weight: bold;
 }
 
 .result .end-buttons{
@@ -58,32 +64,34 @@ html,body {
     font-size: 30px;
     font-family: 'Ubuntu', sans-serif;
     text-align: center;
-    color: #0d1b2a;
+    color: #000;
     padding: 10px;
-    background-color: #778da9;
+    background-color: #e0fbfc;
 
-    border:5px solid #415a77;
+    border:5px solid rgb(1, 67, 129);
     font-weight: bold;
     border-radius: 20px;
+    cursor: pointer;
 
 }
 .result #restart{
     font-size: 30px;
     font-family: 'Ubuntu', sans-serif;
     text-align: center;
-    color: #0d1b2a;
+    color: #000;
     padding: 10px;
-    background-color: #778da9;
-    border:5px solid #415a77;
+    background-color: #e0fbfc;
+    border:5px solid rgb(1, 67, 129);
     font-weight: bold;
     border-radius: 20px;
+    cursor: pointer;
 
 }
 
 .result #p-score{
     position: absolute;
     background-color: #e0fbfc;
-    color: #00173f;
+    color: #000;
     font-weight: bold;
     font-size: 25px;
     padding: 10px;
@@ -91,7 +99,7 @@ html,body {
     top: 50px;
     left: 50px;
     font-family: 'Ubuntu', sans-serif;
-    border:5px solid #415a77;
+    border:5px solid rgb(1, 67, 129);
     border-radius: 10px;
     display: inline-block;
 }
@@ -106,7 +114,7 @@ html,body {
 .result #c-score{
     position: absolute;
     background-color: #e0fbfc;
-    color: #00173f;
+    color: #000;
     font-weight: bold;
     font-size: 25px;
     padding: 10px;
@@ -114,12 +122,12 @@ html,body {
     top: 50px;
     right: 50px;
     font-family: 'Ubuntu', sans-serif;
-    border:5px solid #415a77;
+    border:5px solid rgb(1, 67, 129);
     border-radius: 10px;
 }
 #comp-chooses{
     background-color: #e0fbfc;
-    border:7.5px solid #415a77;
+    border:7.5px solid rgb(1, 67, 129);
     border-radius: 20px;
     position: absolute;
     right: 50px;
@@ -139,9 +147,10 @@ html,body {
     display: block;
     font-size: 25px;
 }
+
 #final-result{
     color: white;
-    font-size: 80px;
+    font-size: 70px;
     text-align: center;
     left:600px;
     position: absolute;
@@ -152,4 +161,32 @@ html,body {
     font-size: 35px;
     left:600px;
     position: absolute;
+    color: white;
+    
 }
+
+@keyframes wave {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  #final-result {
+    font-size: 65px;
+    text-align: center;
+  }
+  
+  .wave-animation {
+    animation-name: wave;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 3;
+    color: greenyellow;
+  }
+  

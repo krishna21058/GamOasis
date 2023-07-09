@@ -5,11 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Tic-Tac-Toe</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-    <link href="styles/style.css" rel="stylesheet" type="text/css" />
+    <link href="styles/style-index.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -17,17 +16,20 @@
         <div class="modes-container">
             <h1 class="title">Tic Tac Toe</h1>
             <div class="modes">
+
                 <div class="mode-column">
                     <button id="onep" value="onep"><img src="assets/one_player.png" alt=""> <label for=""
-                            class="input">Vs Computer</label></button>
+                            class="input">Vs Computer <br>(1 Player)</label></button>
                 </div>
                 <div class="mode-column">
                     <button id="twop" value="twop"><img src="assets/two_player.png" alt=""><label for=""
-                            class="input">Vs Human</label></button>
+                            class="input">Vs Human <br>(2 Player)</label></button>
                 </div>
             </div>
 
         </div>
+        <br><br>
+        <button id="quit" onclick="window.location.href='../index.html'">Quit</button>
     </div>
     <script src="js/index-tic-tac-toe.js"></script>
 </body>

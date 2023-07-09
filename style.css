@@ -1,0 +1,90 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#games-wrapper {
+  position: relative;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background: url('assets/bg.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 200px;
+  height: 200px;
+  align-items: center;
+}
+
+.title {
+  margin-left: 20px;
+}
+
+.title h1,
+.title h6 {
+  margin: 0;
+}
+
+.games {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 40px;
+  align-items: center;
+}
+
+#more {
+  text-align: right;
+  font-size: 18px;
+  color: #fff;
+  margin-top: 10px; 
+  font-weight: normal;
+}
+
+.game-column {
+  align-items: center;
+}
+
+.game-column button {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background: none;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.game-column img {
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+}
+
+.game-column label {
+  font-size: 18px;
+  color: #fff;
+  margin-top: 10px;
+  cursor: pointer;
+}
