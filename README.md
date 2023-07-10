@@ -33,7 +33,8 @@ https://krishna21058.github.io/GamOasis/
 # Screenshots (Some Snippets from GamOasis)
 
 1. Home Page
-<img width="960" alt="ss1" src="https://github.com/krishna21058/GamOasis/assets/108231417/e7513411-33c9-437e-b080-31124444f981">
+<img width="960" alt="ss" src="https://github.com/krishna21058/GamOasis/assets/108231417/dbdc1c6c-9dfc-4c3d-8260-9aa1547f3f26">
+
 
 2. Codle Game
 
