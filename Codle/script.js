@@ -214,6 +214,7 @@ function showResult() {
   }
   document.getElementById("reset").disabled = false;
   document.getElementById("infobtn").disabled = false;
+  document.getElementById("quit").disabled = false;
 }
 
 

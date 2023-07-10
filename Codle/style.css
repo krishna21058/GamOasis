@@ -237,6 +237,7 @@ button:hover {
   right: 20px;
   top: 95px;
   width: 800px;
+  z-index: 2;
 }
 
 #info-content p img {
