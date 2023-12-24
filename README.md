@@ -4,7 +4,7 @@
 Welcome to Gamoasis, a mini-games website that offers a collection of entertaining and interactive mini games. 
 This platform is designed to provide a fun and engaging experience for users of all ages.
 
-Mini Games Included:
+Mini Games Included As of Now:
 
 1. Codle - Show off your code-breaking abilities in Codle, a thrilling and unique code-guessing game. Try to decipher the secret code, with the help of available hints and lifelines, within a limited number of attempts to win the game. On top of that see if can you secure a place on the leaderboard and claim a spot in top charts.
 
